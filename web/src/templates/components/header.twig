@@ -1,0 +1,36 @@
+<header class="header" x-data="{ menuOpen: false, scrolled: false }" @scroll.window="scrolled = window.scrollY > 40">
+  <div class="header__inner container">
+
+    <a href="/" class="header__logo" aria-label="HeatForge — на главную">
+      <svg class="header__logo-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2C8 7 4 10 4 14a8 8 0 0 0 16 0c0-4-4-7-8-12z" fill="currentColor"/>
+      </svg>
+      <span class="header__logo-text">HEATFORGE</span>
+    </a>
+
+    <nav class="header__nav" :class="{ 'is-open': menuOpen }" aria-label="Основная навигация">
+      <ul class="header__nav-list">
+        <li><a href="/catalog" class="header__nav-link {% if page == 'catalog' %}is-active{% endif %}">Каталог</a></li>
+        <li><a href="/about"   class="header__nav-link {% if page == 'about' %}is-active{% endif %}">О нас</a></li>
+        <li><a href="/blog"    class="header__nav-link {% if page == 'blog' %}is-active{% endif %}">Блог</a></li>
+        <li><a href="/contacts" class="header__nav-link {% if page == 'contacts' %}is-active{% endif %}">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/cart" class="header__cart" aria-label="Корзина">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="header__cart-count" x-text="$store.cart.count" x-show="$store.cart.count > 0" x-cloak></span>
+      </a>
+
+      <button class="header__burger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
