@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Flame, Phone } from 'lucide-react';
+import { Flame, Phone, ShieldCheck } from 'lucide-react';
+
+const PayBadge = ({ label, bg, color }: { label: string; bg: string; color: string }) => (
+  <span className="inline-flex items-center justify-center text-[9px] font-bold px-2 py-1 rounded" style={{ background: bg, color }}>
+    {label}
+  </span>
+);
 
 export default function Footer() {
   return (
@@ -15,6 +21,29 @@ export default function Footer() {
             <p className="text-sm text-[var(--ash)] leading-relaxed">
               Кузница огня с 2019 года. Ручная работа — каждый шов, каждый угол.
             </p>
+            {/* Платёжные системы */}
+            <div className="mt-5">
+              <p className="text-xs text-[var(--smoke)] mb-2 flex items-center gap-1">
+                <ShieldCheck className="w-3 h-3 text-green-500" />
+                Принимаем оплату
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                <PayBadge label="МИР" bg="#0F5CA9" color="white" />
+                <PayBadge label="SberPay" bg="#21A038" color="white" />
+                <PayBadge label="T-Pay" bg="#FFDD2D" color="#333" />
+                <PayBadge label="VISA" bg="#1A1F71" color="white" />
+                <PayBadge label="MC" bg="#252525" color="white" />
+              </div>
+            </div>
+            {/* Доставщики */}
+            <div className="mt-4">
+              <p className="text-xs text-[var(--smoke)] mb-2">Доставка</p>
+              <div className="flex flex-wrap gap-1.5">
+                {['СДЭК', 'ПЭК', 'Почта РФ'].map(d => (
+                  <span key={d} className="text-[10px] text-[var(--ash)] bg-[var(--charcoal-surface)] px-2 py-0.5 rounded">{d}</span>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Catalog */}
@@ -55,6 +84,12 @@ export default function Footer() {
               <Phone className="w-4 h-4" />
               Написать в WhatsApp
             </a>
+            <p className="text-xs text-[var(--smoke)] mt-4">
+              Или звоните:{' '}
+              <a href="tel:+79001234567" className="text-[var(--copper)] hover:text-[var(--copper-light)]">
+                +7 (900) 123-45-67
+              </a>
+            </p>
           </div>
         </div>
 
