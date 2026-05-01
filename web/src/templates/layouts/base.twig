@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ title | default('HeatForge') }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ description | default('Грили и мангалы ручной работы') }}{% endblock %}">
+
+  {# Preload critical font #}
+  <link rel="preload" href="/build/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  {# Page-level CSS — только стили нужной страницы #}
+  {% block styles %}{% endblock %}
+
+  {# Alpine.js — defer для неблокирующей загрузки #}
+  <script defer src="/build/js/main.js"></script>
+</head>
+<body class="page--{{ page | default('default') }}" x-data>
+
+  {% include 'components/header.twig' %}
+
+  <main class="main" id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include 'components/footer.twig' %}
+
+  {# WhatsApp floating button #}
+  {% include 'components/whatsapp-button.twig' %}
+
+  {# Page-level JS #}
+  {% block scripts %}{% endblock %}
+
+</body>
+</html>
