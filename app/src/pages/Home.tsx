@@ -14,6 +14,7 @@ import {
   Check, Star, ChevronDown, Flame, Truck, ShieldCheck, Hammer, Phone,
   Clock, Award, Wrench, Package
 } from 'lucide-react';
+import { assetUrl } from '@/lib/assets';
 
 export default function Home() {
   const [filter, setFilter] = useState<'all' | 'grill' | 'accessory'>('all');
@@ -115,9 +116,9 @@ export default function Home() {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { img: '/assets/cat-grills.jpg', label: 'Грили и мангалы', count: '6 моделей', href: '#products' },
-              { img: '/assets/cat-accessories.jpg', label: 'Аксессуары для гриля', count: '10 товаров', href: '#products' },
-              { img: '/assets/cat-recipes.jpg', label: 'Рецепты для гриля', count: '4 рецепта', href: '/blog' },
+              { img: assetUrl('assets/cat-grills.jpg'), label: 'Грили и мангалы', count: '6 моделей', href: '#products' },
+              { img: assetUrl('assets/cat-accessories.jpg'), label: 'Аксессуары для гриля', count: '10 товаров', href: '#products' },
+              { img: assetUrl('assets/cat-recipes.jpg'), label: 'Рецепты для гриля', count: '4 рецепта', href: '/blog' },
             ].map((cat, i) => (
               <Link
                 key={i}
