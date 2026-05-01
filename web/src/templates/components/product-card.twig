@@ -1,0 +1,44 @@
+{#
+  Компонент карточки товара.
+  Параметры:
+    product — объект товара
+    compact  — boolean, компактный вид (опционально)
+#}
+<article class="product-card{% if compact %} product-card--compact{% endif %}"
+  x-data="productCard({{ product | json_encode }})"
+>
+  {% if product.badge %}
+    {% include 'components/badge.twig' with { text: product.badge } %}
+  {% endif %}
+
+  <a href="/product/{{ product.slug }}" class="product-card__image-wrap">
+    <img
+      src="/assets/images/{{ product.images[0] }}"
+      alt="{{ product.name }}"
+      class="product-card__image"
+      loading="lazy"
+      width="400"
+      height="400"
+    >
+  </a>
+
+  <div class="product-card__body">
+    <a href="/product/{{ product.slug }}" class="product-card__name">{{ product.name }}</a>
+
+    <div class="product-card__price">
+      <span class="product-card__price-current">{{ product.price | number_format(0, '.', ' ') }} ₽</span>
+      {% if product.oldPrice %}
+        <span class="product-card__price-old">{{ product.oldPrice | number_format(0, '.', ' ') }} ₽</span>
+      {% endif %}
+    </div>
+
+    <button
+      class="btn btn--primary btn--full"
+      @click="addToCart()"
+      :class="{ 'is-added': added }"
+      type="button"
+    >
+      <span x-text="added ? 'Добавлено ✓' : 'В корзину'">В корзину</span>
+    </button>
+  </div>
+</article>
