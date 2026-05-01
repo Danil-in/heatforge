@@ -1,0 +1,8 @@
+{# badge.twig — Параметры: text, modifier (опционально) #}
+{% set badge_map = {
+  'bestseller': { label: 'Бестселлер', mod: 'bestseller' },
+  'new':        { label: 'Новинка',    mod: 'new' },
+  'sale':       { label: 'Скидка',     mod: 'sale' }
+} %}
+{% set badge_data = badge_map[text] ?? { label: text, mod: 'default' } %}
+<span class="badge badge--{{ modifier ?? badge_data.mod }}">{{ badge_data.label }}</span>
