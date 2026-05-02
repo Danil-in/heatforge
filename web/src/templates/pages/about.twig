@@ -1,0 +1,16 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('src/scss/pages/about.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% include 'components/breadcrumb.twig' with { items: [{ label: 'О компании', url: '/about' }] } %}
+    <h1 class="page-title">О компании</h1>
+    <div class="about-content">
+        <p>HeatForge — кузница огня с 2019 года. Мы создаём грили и мангалы ручной работы из стали 2–4 мм.</p>
+    </div>
+    {% include 'components/trust-strip.twig' %}
+</div>
+{% endblock %}
