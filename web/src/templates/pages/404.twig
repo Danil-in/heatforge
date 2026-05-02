@@ -1,0 +1,16 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('src/scss/pages/about.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container container--narrow">
+    <div class="error-page">
+        <h1 class="error-page__code">404</h1>
+        <h2 class="error-page__title">Страница не найдена</h2>
+        <p class="error-page__desc">Возможно, она была удалена или вы перешли по неверной ссылке.</p>
+        <a href="/" class="btn btn--primary">На главную</a>
+    </div>
+</div>
+{% endblock %}
