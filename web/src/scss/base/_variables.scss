@@ -1,0 +1,83 @@
+// ─── ЦВЕТА ──────────────────────────────────────────────────────────────────
+$color-bg:            #0d0d0d;
+$color-bg-panel:      #1a1a1a;
+$color-bg-surface:    #242424;
+$color-text:          #ffffff;
+$color-text-secondary:#a0a0a0;
+$color-text-muted:    #666666;
+
+$color-primary:       #f26a2e;
+$color-primary-hover: #ff7d3f;
+$color-primary-dark:  #c4521f;
+
+$color-whatsapp:      #25D366;
+$color-mir:           #0F5CA9;
+$color-sber:          #21A038;
+$color-tpay:          #FFDD2D;
+
+$color-border:        rgba(255, 255, 255, 0.06);
+$color-border-strong: rgba(255, 255, 255, 0.12);
+
+// ─── ТИПОГРАФИКА ────────────────────────────────────────────────────────────
+$font-family:         'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-size-base:      16px;
+$line-height-base:    1.6;
+
+$font-size-xs:        0.75rem;   // 12px
+$font-size-sm:        0.875rem;  // 14px
+$font-size-md:        1rem;      // 16px
+$font-size-lg:        1.125rem;  // 18px
+$font-size-xl:        1.25rem;   // 20px
+$font-size-2xl:       1.5rem;    // 24px
+$font-size-3xl:       1.875rem;  // 30px
+$font-size-4xl:       2.25rem;   // 36px
+$font-size-5xl:       3rem;      // 48px
+
+$font-weight-normal:  400;
+$font-weight-medium:  500;
+$font-weight-semibold:600;
+$font-weight-bold:    700;
+$font-weight-black:   900;
+
+// ─── ОТСТУПЫ ─────────────────────────────────────────────────────────────────
+$space-1:   0.25rem;
+$space-2:   0.5rem;
+$space-3:   0.75rem;
+$space-4:   1rem;
+$space-5:   1.25rem;
+$space-6:   1.5rem;
+$space-8:   2rem;
+$space-10:  2.5rem;
+$space-12:  3rem;
+$space-16:  4rem;
+$space-20:  5rem;
+$space-24:  6rem;
+
+// ─── РАДИУСЫ ────────────────────────────────────────────────────────────────
+$radius-sm:   6px;
+$radius-md:   10px;
+$radius-lg:   16px;
+$radius-xl:   24px;
+$radius-full: 9999px;
+
+// ─── КОНТЕЙНЕРЫ ─────────────────────────────────────────────────────────────
+$container-max:     1280px;
+$container-narrow:  760px;
+$container-padding: clamp(1rem, 4vw, 3rem);
+
+// ─── БРЕЙКПОИНТЫ ────────────────────────────────────────────────────────────
+$bp-sm:  640px;
+$bp-md:  768px;
+$bp-lg:  1024px;
+$bp-xl:  1280px;
+
+// ─── ТЕНИ ────────────────────────────────────────────────────────────────────
+$shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.4);
+$shadow-md:     0 4px 16px rgba(0, 0, 0, 0.5);
+$shadow-fire:   0 4px 24px rgba(242, 106, 46, 0.35);
+$shadow-fire-lg:0 8px 40px rgba(242, 106, 46, 0.45);
+
+// ─── ПЕРЕХОДЫ ────────────────────────────────────────────────────────────────
+$transition-fast:   all 0.15s ease;
+$transition-base:   all 0.25s ease;
+$transition-slow:   all 0.4s ease;
