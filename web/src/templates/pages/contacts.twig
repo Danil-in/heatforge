@@ -1,0 +1,20 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('src/scss/pages/contacts.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% include 'components/breadcrumb.twig' with { items: [{ label: 'Контакты', url: '/contacts' }] } %}
+    <h1 class="page-title">Контакты</h1>
+    <div class="contacts-grid">
+        <div class="contacts-info">
+            <p><strong>Телефон:</strong> <a href="tel:{{ app.phone }}">{{ app.phone }}</a></p>
+            <p><strong>WhatsApp:</strong> <a href="{{ app.whatsapp }}" target="_blank" rel="noopener noreferrer">Написать</a></p>
+            <p><strong>Режим работы:</strong> Пн–Вс, 9:00–21:00</p>
+        </div>
+        {% include 'components/whatsapp-button.twig' %}
+    </div>
+</div>
+{% endblock %}
