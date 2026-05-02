@@ -1,0 +1,19 @@
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4;
+  margin-top: $space-5;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+  }
+
+  &__icon { color: $color-primary; flex-shrink: 0; }
+
+  &__text {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+}
