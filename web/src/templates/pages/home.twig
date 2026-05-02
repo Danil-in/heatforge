@@ -1,0 +1,179 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('src/scss/pages/home.scss') }}">
+{% endblock %}
+
+{% block content %}
+
+{# HERO #}
+<section class="hero">
+    <div class="hero__inner">
+        <div class="hero__media">
+            <img src="{{ hero_product.images[0] }}"
+                 alt="{{ hero_product.name }}"
+                 class="hero__image"
+                 width="640" height="640"
+                 fetchpriority="high">
+        </div>
+        <div class="hero__content">
+            <h1 class="hero__title">{{ hero_product.name }}</h1>
+            <p class="hero__desc">{{ hero_product.description }}</p>
+            <ul class="hero__features">
+                {% for feature in hero_product.features %}
+                    <li class="hero__feature">
+                        <svg width="16" height="16" aria-hidden="true"><use href="/build/sprite.svg#icon-check"></use></svg>
+                        {{ feature }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="hero__price">{{ hero_product.price | number_format(0, '.', ' ') }} ₽</div>
+            <div class="hero__actions">
+                <button class="btn btn--primary btn--lg"
+                        x-data
+                        @click="$store.cart.add({{ hero_product | json_encode }})">
+                    Добавить в корзину
+                </button>
+                <a href="/catalog" class="hero__link">Смотреть все модели →</a>
+            </div>
+            {% include 'components/trust-strip.twig' %}
+        </div>
+    </div>
+</section>
+
+{# CATEGORIES #}
+<section class="categories">
+    <div class="container">
+        <div class="categories__grid">
+            {% set cats = [
+                { img: '/assets/images/cat-grills.jpg', label: 'Грили и мангалы', count: '6 моделей', url: '/catalog?category=grill' },
+                { img: '/assets/images/cat-accessories.jpg', label: 'Аксессуары', count: '10 товаров', url: '/catalog?category=accessory' },
+                { img: '/assets/images/cat-recipes.jpg', label: 'Рецепты', count: '4 статьи', url: '/blog' }
+            ] %}
+            {% for cat in cats %}
+                <a href="{{ cat.url }}" class="category-card">
+                    <img src="{{ cat.img }}" alt="{{ cat.label }}" class="category-card__image" loading="lazy" width="400" height="225">
+                    <div class="category-card__overlay">
+                        <span class="category-card__label">{{ cat.label }}</span>
+                        <span class="category-card__count">{{ cat.count }}</span>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# PRODUCTS #}
+<section class="section" id="products">
+    <div class="container">
+        <div class="section__header">
+            <span class="section__overline">КАТАЛОГ</span>
+            <h2 class="section__title">Наши изделия</h2>
+            <p class="section__subtitle">Ручная работа из стали толщиной 2–4 мм</p>
+        </div>
+        <div class="product-grid">
+            {% for product in products %}
+                {% include 'components/product-card.twig' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# WHY US #}
+<section class="section section--alt">
+    <div class="container">
+        <div class="section__header">
+            <span class="section__overline">ПОЧЕМУ МЫ</span>
+            <h2 class="section__title">Сделано с огнём и душой</h2>
+        </div>
+        <div class="why-us">
+            <div class="why-us__stats">
+                {% for stat in [
+                    { value: '2019', label: 'год основания' },
+                    { value: '1 200+', label: 'довольных клиентов' },
+                    { value: '3–4 мм', label: 'толщина стали' },
+                    { value: '2 года', label: 'гарантия' }
+                ] %}
+                    <div class="why-us__stat">
+                        <span class="why-us__stat-value">{{ stat.value }}</span>
+                        <span class="why-us__stat-label">{{ stat.label }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="why-us__cards">
+                {% for item in [
+                    { icon: 'hammer', title: 'Ручная работа — каждый шов', desc: 'Каждый мангал собирается вручную. Контроль качества на каждом этапе.' },
+                    { icon: 'shield', title: 'Сталь 3–4 мм — не прогорит', desc: 'Конструкционная сталь выдерживает годы интенсивного использования.' },
+                    { icon: 'truck', title: 'Доставка по всей России', desc: 'СДЭК, ПЭК и Почта России. Деревянная упаковка защищает при транспортировке.' },
+                    { icon: 'award', title: 'Гарантия 2 года', desc: 'Уверены в качестве на 100%. Бесплатный ремонт или замена.' }
+                ] %}
+                    <div class="why-us__card">
+                        <div class="why-us__card-icon">
+                            <svg width="28" height="28" aria-hidden="true"><use href="/build/sprite.svg#icon-{{ item.icon }}"></use></svg>
+                        </div>
+                        <h3 class="why-us__card-title">{{ item.title }}</h3>
+                        <p class="why-us__card-desc">{{ item.desc }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{# HOW TO ORDER #}
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <span class="section__overline">КАК ЗАКАЗАТЬ</span>
+            <h2 class="section__title">От выбора до костра — 4 шага</h2>
+        </div>
+        <div class="steps">
+            {% for step in [
+                { num: '01', icon: 'package', title: 'Выберите модель', desc: 'Ознакомьтесь с каталогом или напишите нам — подберём под ваш бюджет.' },
+                { num: '02', icon: 'phone',   title: 'Оформите заказ',  desc: 'Добавьте товар в корзину или напишите в WhatsApp — оформим за вас.' },
+                { num: '03', icon: 'truck',   title: 'Мы доставим',     desc: 'Упакуем и отправим через СДЭК, ПЭК или Почту РФ за 1–2 дня.' },
+                { num: '04', icon: 'flame',   title: 'Разводите огонь!',desc: 'Соберите за 5 минут и приготовьте первый шашлык.' }
+            ] %}
+                <div class="step">
+                    <div class="step__num">{{ step.num }}</div>
+                    <div class="step__icon">
+                        <svg width="24" height="24" aria-hidden="true"><use href="/build/sprite.svg#icon-{{ step.icon }}"></use></svg>
+                    </div>
+                    <h3 class="step__title">Шаг {{ step.num }}: {{ step.title }}</h3>
+                    <p class="step__desc">{{ step.desc }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="steps__cta">
+            <a href="/catalog" class="btn btn--primary btn--lg">Выбрать мангал</a>
+            <p>Или <a href="{{ app.whatsapp }}" target="_blank" rel="noopener noreferrer">напишите в WhatsApp</a></p>
+        </div>
+    </div>
+</section>
+
+{# TESTIMONIALS #}
+<section class="section section--alt">
+    <div class="container">
+        <div class="section__header">
+            <span class="section__overline">ОТЗЫВЫ</span>
+            <h2 class="section__title">Что говорят наши клиенты</h2>
+        </div>
+        <div class="reviews-grid">
+            {% for review in testimonials %}
+                {% include 'components/review-card.twig' with review %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# WHATSAPP CTA #}
+<section class="section section--cta">
+    <div class="container container--narrow">
+        <h2 class="section__title">Остались вопросы?</h2>
+        <p>Напишите нам — поможем выбрать модель, расскажем о доставке и ответим на любые вопросы.</p>
+        {% include 'components/whatsapp-button.twig' with { label: 'Написать в WhatsApp' } %}
+        <a href="tel:{{ app.phone }}" class="cta__phone">{{ app.phone }}</a>
+    </div>
+</section>
+
+{% endblock %}
