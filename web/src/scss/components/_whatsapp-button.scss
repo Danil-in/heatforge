@@ -1,0 +1,10 @@
+.btn--whatsapp {
+  background: $color-whatsapp;
+  color: #fff;
+  border-color: $color-whatsapp;
+
+  &:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+}
