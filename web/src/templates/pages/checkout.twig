@@ -1,0 +1,51 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('src/scss/pages/checkout.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container container--narrow">
+    <h1 class="page-title">Оформление заказа</h1>
+
+    <div class="checkout" x-data="checkoutForm()">
+        <div class="checkout__steps">
+            <div class="checkout__step is-active">1. Доставка</div>
+            <div class="checkout__step">2. Оплата</div>
+            <div class="checkout__step">3. Подтверждение</div>
+        </div>
+
+        <form class="checkout__form" @submit.prevent="submit()">
+            <fieldset class="form-group">
+                <legend class="form-legend">Контактные данные</legend>
+                <div class="form-row">
+                    <label class="form-label" for="name">Имя <span aria-hidden="true">*</span></label>
+                    <input class="form-input" type="text" id="name" name="name" required x-model="form.name">
+                </div>
+                <div class="form-row">
+                    <label class="form-label" for="phone">Телефон <span aria-hidden="true">*</span></label>
+                    <input class="form-input" type="tel" id="phone" name="phone" required x-model="form.phone">
+                </div>
+                <div class="form-row">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-input" type="email" id="email" name="email" x-model="form.email">
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <legend class="form-legend">Адрес доставки</legend>
+                <div class="form-row">
+                    <label class="form-label" for="city">Город <span aria-hidden="true">*</span></label>
+                    <input class="form-input" type="text" id="city" name="city" required x-model="form.city">
+                </div>
+                <div class="form-row">
+                    <label class="form-label" for="address">Адрес</label>
+                    <input class="form-input" type="text" id="address" name="address" x-model="form.address">
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn--primary btn--lg btn--block">Перейти к оплате</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
