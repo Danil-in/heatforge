@@ -1,0 +1,35 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('src/scss/pages/catalog.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% include 'components/breadcrumb.twig' with { items: [{ label: 'Каталог', url: '/catalog' }] } %}
+
+    <div class="catalog-header">
+        <h1 class="catalog-header__title">Каталог</h1>
+        <div class="catalog-filter" x-data="{ active: '{{ category }}' }">
+            {% for tab in [
+                { key: 'all',       label: 'Все' },
+                { key: 'grill',     label: 'Грили' },
+                { key: 'accessory', label: 'Аксессуары' }
+            ] %}
+                <a href="/catalog?category={{ tab.key }}"
+                   class="catalog-filter__btn {% if category == tab.key %}is-active{% endif %}">
+                    {{ tab.label }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="product-grid">
+        {% for product in products %}
+            {% include 'components/product-card.twig' %}
+        {% else %}
+            <p class="catalog__empty">Товары не найдены.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
