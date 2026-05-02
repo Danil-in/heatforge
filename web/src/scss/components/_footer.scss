@@ -1,0 +1,105 @@
+.footer {
+  background: $color-bg-panel;
+  border-top: 1px solid $color-border;
+  padding-top: $space-16;
+
+  &__inner {
+    max-width: $container-max;
+    margin: 0 auto;
+    padding: 0 $container-padding $space-12;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: $space-10;
+
+    @media (max-width: $bp-lg) { grid-template-columns: 1fr 1fr; }
+    @media (max-width: $bp-sm) { grid-template-columns: 1fr; }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    font-weight: $font-weight-black;
+    letter-spacing: 0.1em;
+    margin-bottom: $space-3;
+  }
+
+  &__tagline {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.6;
+    margin-bottom: $space-5;
+  }
+
+  &__payments-label,
+  &__delivery-label {
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    margin-bottom: $space-2;
+  }
+
+  &__delivery-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-1;
+  }
+
+  &__nav-title {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-text;
+    margin-bottom: $space-4;
+  }
+
+  &__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    a {
+      font-size: $font-size-sm;
+      color: $color-text-secondary;
+      transition: $transition-fast;
+
+      &:hover { color: $color-primary; }
+    }
+  }
+
+  &__contact {
+    p { font-size: $font-size-sm; color: $color-text-secondary; margin-bottom: $space-4; }
+  }
+
+  &__phone {
+    display: block;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin-top: $space-3;
+
+    &:hover { color: $color-primary; }
+  }
+
+  &__bottom {
+    border-top: 1px solid $color-border;
+    padding: $space-5 $container-padding;
+    max-width: $container-max;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $space-3;
+
+    p { font-size: $font-size-xs; color: $color-text-muted; }
+  }
+
+  &__legal {
+    display: flex;
+    gap: $space-3;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+
+    a:hover { color: $color-primary; }
+  }
+}
