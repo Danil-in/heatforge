@@ -1,0 +1,69 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('src/scss/pages/cart.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Корзина</h1>
+    <a href="/catalog" class="back-link">← Вернуться в каталог</a>
+
+    <div class="cart" x-data="cartPage()" x-init="init()">
+        <div class="cart__items" x-show="$store.cart.items.length > 0">
+            <template x-for="item in $store.cart.items" :key="item.id">
+                <div class="cart-item">
+                    <img :src="item.image" :alt="item.name" class="cart-item__image" loading="lazy" width="80" height="80">
+                    <div class="cart-item__info">
+                        <a :href="'/product/' + item.id" class="cart-item__name" x-text="item.name"></a>
+                        <span class="cart-item__unit-price" x-text="item.price.toLocaleString('ru-RU') + ' ₽ / шт.'"></span>
+                    </div>
+                    <div class="cart-item__qty">
+                        <button class="qty-btn" @click="$store.cart.decrement(item.id)">−</button>
+                        <span class="qty-value" x-text="item.quantity"></span>
+                        <button class="qty-btn" @click="$store.cart.increment(item.id)">+</button>
+                    </div>
+                    <span class="cart-item__total" x-text="(item.price * item.quantity).toLocaleString('ru-RU') + ' ₽'"></span>
+                    <button class="cart-item__remove" @click="$store.cart.remove(item.id)" aria-label="Удалить">×</button>
+                </div>
+            </template>
+        </div>
+
+        <div class="cart__empty" x-show="$store.cart.items.length === 0">
+            <p>Ваша корзина пуста</p>
+            <a href="/catalog" class="btn btn--primary">Перейти в каталог</a>
+        </div>
+
+        <div class="cart__summary" x-show="$store.cart.items.length > 0">
+            <div class="cart-summary">
+                <div class="cart-summary__row">
+                    <span>Товары</span>
+                    <span x-text="$store.cart.total().toLocaleString('ru-RU') + ' ₽'"></span>
+                </div>
+                <div class="cart-summary__row">
+                    <span>Доставка</span>
+                    <span>от 290 ₽</span>
+                </div>
+                <div class="cart-summary__total">
+                    <span>Итого</span>
+                    <span x-text="$store.cart.total().toLocaleString('ru-RU') + ' ₽'"></span>
+                </div>
+                <a href="/checkout" class="btn btn--primary btn--block">Оформить заказ</a>
+                <a href="/catalog" class="btn btn--ghost btn--block">Продолжить покупки</a>
+
+                <div class="cart-summary__trust">
+                    <p class="cart-summary__secure">🔒 Безопасная оплата</p>
+                    {% include 'components/payment-badges.twig' %}
+                    <div class="cart-summary__delivery">
+                        <span class="badge badge--sm">СДЭК</span>
+                        <span class="badge badge--sm">ПЭК</span>
+                        <span class="badge badge--sm">Почта РФ</span>
+                    </div>
+                </div>
+            </div>
+
+            {% include 'components/whatsapp-button.twig' with { label: 'Есть вопрос по заказу?' } %}
+        </div>
+    </div>
+</div>
+{% endblock %}
