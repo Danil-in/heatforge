@@ -1,0 +1,18 @@
+<button
+    class="btn btn--{{ variant | default('primary') }} {% if size %}btn--{{ size }}{% endif %} {% if class %}{{ class }}{% endif %}"
+    {% if type %}type="{{ type }}"{% endif %}
+    {% if disabled %}disabled{% endif %}
+    {% if attrs %}{{ attrs | raw }}{% endif %}
+>
+    {% if icon_before %}
+        <svg class="btn__icon btn__icon--before" width="20" height="20" aria-hidden="true">
+            <use href="/build/sprite.svg#icon-{{ icon_before }}"></use>
+        </svg>
+    {% endif %}
+    {{ label }}
+    {% if icon_after %}
+        <svg class="btn__icon btn__icon--after" width="20" height="20" aria-hidden="true">
+            <use href="/build/sprite.svg#icon-{{ icon_after }}"></use>
+        </svg>
+    {% endif %}
+</button>
