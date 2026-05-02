@@ -1,0 +1,18 @@
+<article class="review-card">
+    <div class="review-card__header">
+        <div class="review-card__avatar" aria-hidden="true">{{ name | first }}</div>
+        <div class="review-card__meta">
+            <strong class="review-card__name">{{ name }}</strong>
+            <span class="review-card__location">{{ location }}</span>
+        </div>
+    </div>
+    <div class="review-card__stars" aria-label="Оценка: {{ rating }} из 5">
+        {% for i in 1..5 %}
+            <svg width="16" height="16" class="review-card__star {% if i <= rating %}is-filled{% endif %}" aria-hidden="true">
+                <use href="/build/sprite.svg#icon-star"></use>
+            </svg>
+        {% endfor %}
+    </div>
+    <blockquote class="review-card__text">"{{ text }}"</blockquote>
+    <time class="review-card__date" datetime="{{ date }}">{{ date }}</time>
+</article>
