@@ -1,0 +1,22 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Build output
+/public/build/
+
+# Twig cache
+/cache/
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
