@@ -1,0 +1,26 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('src/scss/pages/blog-post.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container container--narrow">
+    {% include 'components/breadcrumb.twig' with { items: [
+        { label: 'Блог', url: '/blog' },
+        { label: post.title, url: '/blog/' ~ post.slug }
+    ]} %}
+
+    <article class="blog-post">
+        <header class="blog-post__header">
+            <div class="blog-post__meta">
+                <time datetime="{{ post.date }}">{{ post.date }}</time>
+                <span>{{ post.readTime }}</span>
+            </div>
+            <h1 class="blog-post__title">{{ post.title }}</h1>
+            <img src="{{ post.image }}" alt="{{ post.title }}" class="blog-post__cover" width="800" height="450" fetchpriority="high">
+        </header>
+        <div class="blog-post__content">{{ post.content | raw }}</div>
+    </article>
+</div>
+{% endblock %}
