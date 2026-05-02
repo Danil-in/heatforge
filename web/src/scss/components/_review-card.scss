@@ -1,0 +1,64 @@
+.review-card {
+  background: $color-bg-surface;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  padding: $space-6;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-full;
+    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+    color: #fff;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: $color-text;
+    display: block;
+  }
+
+  &__location {
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+  }
+
+  &__stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  &__star {
+    color: $color-text-muted;
+    &.is-filled { color: #f59e0b; }
+  }
+
+  &__text {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  &__date {
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    margin-top: auto;
+  }
+}
