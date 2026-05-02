@@ -1,0 +1,66 @@
+@use '../base/variables' as *;
+@use '../base/reset';
+@use '../base/fonts';
+@use '../components/button';
+@use '../components/card';
+@use '../components/header';
+@use '../components/footer';
+@use '../components/badge';
+@use '../components/breadcrumb';
+
+.container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+main { padding-top: 64px; }
+
+.catalog-header {
+  padding: $space-10 0 $space-6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-4;
+
+  &__title {
+    font-size: $font-size-3xl;
+    color: $color-text;
+  }
+}
+
+.catalog-filter {
+  display: flex;
+  gap: $space-2;
+
+  &__btn {
+    padding: $space-2 $space-4;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-text-secondary;
+    transition: $transition-fast;
+    border: 1px solid transparent;
+
+    &:hover,
+    &.is-active {
+      background: $color-primary;
+      color: #fff;
+    }
+  }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: $space-6;
+  padding-bottom: $space-16;
+}
+
+.catalog__empty {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: $space-16;
+  color: $color-text-secondary;
+}
