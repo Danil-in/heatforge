@@ -1,0 +1,16 @@
+<div class="trust-strip">
+    {% set items = [
+        { icon: 'shield', text: 'Гарантия 2 года' },
+        { icon: 'truck',  text: 'СДЭК · ПЭК · Почта РФ' },
+        { icon: 'hammer', text: 'Ручная работа' },
+        { icon: 'clock',  text: 'Ответ за 10 минут' }
+    ] %}
+    {% for item in items %}
+        <div class="trust-strip__item">
+            <svg class="trust-strip__icon" width="18" height="18" aria-hidden="true">
+                <use href="/build/sprite.svg#icon-{{ item.icon }}"></use>
+            </svg>
+            <span class="trust-strip__text">{{ item.text }}</span>
+        </div>
+    {% endfor %}
+</div>
