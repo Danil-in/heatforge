@@ -1,0 +1,113 @@
+{% extends 'layouts/base.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('src/scss/pages/product.scss') }}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('src/js/pages/product.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% include 'components/breadcrumb.twig' with { items: [
+        { label: 'Каталог', url: '/catalog' },
+        { label: product.name, url: '/product/' ~ product.slug }
+    ]} %}
+
+    <div class="product-detail" x-data="productDetail()">
+
+        {# Gallery #}
+        <div class="product-gallery">
+            <div class="product-gallery__main">
+                <img :src="currentImage"
+                     alt="{{ product.name }}"
+                     class="product-gallery__image"
+                     width="600" height="600">
+            </div>
+            {% if product.images | length > 1 %}
+            <div class="product-gallery__thumbs">
+                {% for img in product.images %}
+                    <button class="product-gallery__thumb {% if loop.first %}is-active{% endif %}"
+                            @click="currentImage = '{{ img }}'">
+                        <img src="{{ img }}" alt="{{ product.name }} фото {{ loop.index }}" loading="lazy" width="80" height="80">
+                    </button>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        {# Info #}
+        <div class="product-info">
+            {% if product.badge %}
+                {% include 'components/badge.twig' with { type: product.badge, label: product.badge == 'bestseller' ? 'Бестселлер' : (product.badge == 'new' ? 'Новинка' : 'Скидка') } %}
+            {% endif %}
+
+            <h1 class="product-info__title">{{ product.name }}</h1>
+            <p class="product-info__desc">{{ product.description }}</p>
+
+            <div class="product-info__attrs">
+                {% for key, val in product.specs %}
+                    <div class="product-attr">
+                        <span class="product-attr__key">{{ key }}</span>
+                        <span class="product-attr__val">{{ val }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="product-info__price-row">
+                <span class="product-info__price">{{ product.price | number_format(0, '.', ' ') }} ₽</span>
+                {% if product.oldPrice %}
+                    <span class="product-info__old-price">{{ product.oldPrice | number_format(0, '.', ' ') }} ₽</span>
+                {% endif %}
+            </div>
+
+            <button class="btn btn--primary btn--lg"
+                    @click="$store.cart.add({{ product | json_encode }})">
+                В корзину
+            </button>
+
+            {% include 'components/trust-strip.twig' %}
+            {% include 'components/whatsapp-button.twig' with { label: 'Есть вопрос? WhatsApp' } %}
+        </div>
+    </div>
+
+    {# Features #}
+    <section class="product-features">
+        <h2 class="product-features__title">Особенности модели</h2>
+        <div class="product-features__list">
+            {% for feature in product.features %}
+                <div class="product-feature">
+                    <svg width="20" height="20" aria-hidden="true"><use href="/build/sprite.svg#icon-check"></use></svg>
+                    <span>{{ feature }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {# Specs #}
+    <section class="product-specs">
+        <h2 class="product-specs__title">Технические характеристики</h2>
+        <table class="specs-table">
+            {% for key, val in product.specs %}
+                <tr class="specs-table__row">
+                    <th class="specs-table__key">{{ key }}</th>
+                    <td class="specs-table__val">{{ val }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    {# Related #}
+    {% if related | length %}
+    <section class="product-related">
+        <h2 class="product-related__title">Похожие товары</h2>
+        <div class="product-grid">
+            {% for product in related %}
+                {% include 'components/product-card.twig' %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}
