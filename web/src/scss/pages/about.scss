@@ -1,0 +1,21 @@
+@use '../base/variables' as *;
+@use '../base/reset';
+@use '../base/fonts';
+@use '../components/header';
+@use '../components/footer';
+@use '../components/breadcrumb';
+@use '../components/trust-strip';
+
+.container { max-width: $container-max; margin: 0 auto; padding: 0 $container-padding; }
+main { padding-top: calc(64px + #{$space-6}); padding-bottom: $space-16; }
+.page-title { font-size: $font-size-3xl; color: $color-text; margin-bottom: $space-6; }
+.about-content { font-size: $font-size-md; color: $color-text-secondary; line-height: 1.8; max-width: 680px; margin-bottom: $space-10; }
+
+.error-page {
+  text-align: center;
+  padding: $space-24 0;
+
+  &__code { font-size: 8rem; font-weight: $font-weight-black; color: $color-primary; line-height: 1; }
+  &__title { font-size: $font-size-3xl; color: $color-text; margin: $space-4 0; }
+  &__desc { font-size: $font-size-md; color: $color-text-secondary; margin-bottom: $space-8; }
+}
