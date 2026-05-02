@@ -1,0 +1,63 @@
+@use '../base/variables' as *;
+@use '../base/reset';
+@use '../base/fonts';
+@use '../components/button';
+@use '../components/header';
+@use '../components/footer';
+
+.container { max-width: $container-narrow; margin: 0 auto; padding: 0 $container-padding; }
+main { padding-top: calc(64px + #{$space-8}); padding-bottom: $space-16; }
+
+.page-title { font-size: $font-size-3xl; color: $color-text; margin-bottom: $space-8; }
+
+.checkout {
+  &__steps {
+    display: flex;
+    gap: $space-4;
+    margin-bottom: $space-8;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+
+  &__step {
+    &.is-active { color: $color-primary; font-weight: $font-weight-semibold; }
+  }
+}
+
+.form-group {
+  margin-bottom: $space-8;
+}
+
+.form-legend {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+  margin-bottom: $space-5;
+}
+
+.form-row {
+  margin-bottom: $space-4;
+}
+
+.form-label {
+  display: block;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: $space-2;
+}
+
+.form-input {
+  width: 100%;
+  background: $color-bg-surface;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  color: $color-text;
+  transition: $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
+  }
+}
