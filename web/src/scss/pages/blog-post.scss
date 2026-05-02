@@ -1,0 +1,37 @@
+@use '../base/variables' as *;
+@use '../base/reset';
+@use '../base/fonts';
+@use '../components/header';
+@use '../components/footer';
+@use '../components/breadcrumb';
+
+.container { max-width: $container-max; margin: 0 auto; padding: 0 $container-padding; }
+.container--narrow { max-width: $container-narrow; }
+main { padding-top: calc(64px + #{$space-6}); padding-bottom: $space-16; }
+
+.blog-post {
+  &__header { margin-bottom: $space-8; }
+
+  &__meta {
+    display: flex;
+    gap: $space-3;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    margin-bottom: $space-4;
+  }
+
+  &__title { font-size: clamp($font-size-2xl, 4vw, $font-size-4xl); color: $color-text; margin-bottom: $space-5; }
+
+  &__cover { width: 100%; border-radius: $radius-lg; margin-bottom: $space-8; aspect-ratio: 16/9; object-fit: cover; }
+
+  &__content {
+    font-size: $font-size-md;
+    color: $color-text-secondary;
+    line-height: 1.8;
+
+    h2, h3 { color: $color-text; margin: $space-8 0 $space-4; }
+    p { margin-bottom: $space-4; }
+    ul, ol { margin-bottom: $space-4; padding-left: $space-6; list-style: disc; }
+    li { margin-bottom: $space-2; }
+  }
+}
