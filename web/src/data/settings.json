@@ -1,0 +1,33 @@
+{
+  "site": {
+    "name": "HeatForge",
+    "tagline": "Кузница огня с 2019 года",
+    "phone": "+7 (900) 123-45-67",
+    "whatsapp": "https://wa.me/79001234567",
+    "email": "info@heatforge.ru",
+    "address": "Москва, Россия"
+  },
+  "seo": {
+    "default_title": "HeatForge — Грили и мангалы ручной работы",
+    "default_description": "Кузница огня с 2019 года. Ручная работа — каждый шов, каждый угол. Сталь 2–4 мм, гарантия 2 года.",
+    "og_image": "/assets/images/og-image.jpg"
+  },
+  "delivery": {
+    "providers": [
+      "СДЭК",
+      "ПЭК",
+      "Почта России"
+    ],
+    "min_price": 290,
+    "free_from": null
+  },
+  "payment": {
+    "methods": [
+      "МИР",
+      "SberPay",
+      "T-Pay",
+      "Visa",
+      "Mastercard"
+    ]
+  }
+}
